@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Product Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product {
+            display: flex;
+            gap: 20px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            flex: 1;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .product-details {
+            flex: 2;
+        }
+
+        .product-details h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .product-details p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .color-options {
+            margin-bottom: 20px;
+        }
+
+        .color-options label {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-right: 10px;
+            border: 2px solid #ccc;
+        }
+
+        .color-options label.selected {
+            border: 2px solid #000;
+        }
+
+        .add-to-cart {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product">
+            <div class="product-image">
+                <img id="productImage" src="default-shoe.jpg" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h1>Stylish Running Shoes</h1>
+                <p>Enhance your running experience with our stylish, comfortable, and durable running shoes. Perfect for all terrains and weather conditions.</p>
+                <div class="color-options">
+                    <strong>Choose a color:</strong>
+                    <label class="color-option" data-color="red" style="background-color: red;"></label>
+                    <label class="color-option" data-color="blue" style="background-color: blue;"></label>
+                    <label class="color-option" data-color="green" style="background-color: green;"></label>
+                </div>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const colorOptions = document.querySelectorAll('.color-option');
+        const productImage = document.getElementById('productImage');
+
+        const images = {
+            red: 'red-shoe.jpg',
+            blue: 'blue-shoe.jpg',
+            green: 'green-shoe.jpg'
+        };
+
+        colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                colorOptions.forEach(opt => opt.classList.remove('selected'));
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                // Change product image
+                const color = option.getAttribute('data-color');
+                productImage.src = images[color];
+            });
+        });
+    </script>
+</body>
+</html>
